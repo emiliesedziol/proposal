@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="list-group">
+		<a class="list-group-item list-group-item-action active">
+			<h1 class="headline">Proposal List</h1>
+		</a>
+		<span *ngFor="let proposal of proposals; let i = index" class="list-group-item list-group-item-action">
+			<a (click)="goToShow(proposal)" class="proposal-link">
+				<h5 class="list-group-item-heading">{{proposal.customer}}</h5>
+				<p class="list-group-item-text">
+					{{ proposal.hourly_rate * proposal.estimated_hours | currency:'USD':true:'.0' }}
+				</p>
+			</a>
+			<!-- the location.reload isn't working properly -->
+			<button (click)="deleteProposal(proposal.id, 1); location.reload()">
+				Delete Proposal - will this change github
+			</button>
+		</span>
+	</div>
+</div>
+
+
+		

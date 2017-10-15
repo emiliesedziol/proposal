@@ -1,0 +1,18 @@
+<div class="container">
+    <div *ngIf="proposal" class="card proposal-card">
+        <h1> {{ proposal.customer }}</h1>
+
+            <div>
+            <p>Hi {{ proposal.customer }},</p>
+            
+            <p> URL <a href="{{proposal.portfolio_url }}">here</a> </p>
+            
+            <p>Tools {{ proposal.tools }}</p>
+            
+             <p>Estimated hours {{ proposal.estimated_hours }} Hourly Rate {{proposal.hourly_rate}} 
+                    cost {{ proposal.estimated_hours * proposal.hourly_rate | currency:'USD':true:'.0' }} </p>
+            
+            <p> Weeks to Complete {{ proposal.weeks_to_complete }}</p>
+        </div>
+    </div>
+</div>

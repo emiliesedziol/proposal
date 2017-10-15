@@ -1,0 +1,14 @@
+This is the project coverted in Udemy.com Angular 2 + Rails 5 Bootcamp
+
+To get the skeliton to work I needed to change the following line in package.json
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ", works
+- npm start didn't work until this change was made
+
+On the new proposal page, I haven't figured out how to get the 'Generate Proposal' to be hidden
+  until the form was completely filled out.  The button is disabled until the form is filled in
+
+  After the proposal has been generated I added reset so another proposal could be created
+
+Proposal List I added the delete button.  Working on the project I manage to create a lot of weird proposals
+    The delete button works but the reload doesn't work properly as of 10/12/17

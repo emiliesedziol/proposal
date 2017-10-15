@@ -1,0 +1,156 @@
+<div class="card container form-container">
+
+    <div class='row'>
+        <div class='col-md-6'>
+
+            <h1>Create a proposal</h1>
+
+            <div>
+                <form #proposalForm="ngForm" (ngSubmit)="createProposal(proposal); proposalForm.reset()" >
+                    <div class="form-group">
+                        <label for="customer">Customer Name</label>
+                        <input type="text" 
+                               class="form-control"
+                               id="customer" 
+                               placeholder="Abc Compamy" 
+                               required 
+                               name="customer" 
+                               #customer='ngModel' 
+                               [(ngModel)]="proposal.customer">
+                        <div [hidden]="customer.valid || customer.pristine"
+                             class='alert alert-danger'>
+                            Customer name is required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portfolio_url">Portfolio URL</label>
+                        <input type="text" 
+                               class="form-control"
+                               id="portfolio_url" 
+                               required 
+                               name="portfolio_url" 
+                               #portfolio_url='ngModel' 
+                               [(ngModel)]="proposal.portfolio_url">
+                        <div [hidden]="portfolio_url.valid || portfolio_url.pristine"
+                             class='alert alert-danger'>
+                            A Portfolio URL is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id">Customer id</label>
+                        <input type="text"
+                               class="form-control" 
+                               id="id" 
+                               placeholder="12" 
+                               name="id" 
+                               #id='ngModel' 
+                               [(ngModel)]="proposal.id">
+                    </div>
+                    <div class="form-group">
+                        <label for="tools">tools</label>
+                        <input type="text"
+                               class="form-control" 
+                               id="tools" 
+                               placeholder="Ruby on Rails, Angular, Postgres" 
+                               required 
+                               name="tools" 
+                               #tools='ngModel' 
+                               [(ngModel)]="proposal.tools">
+                        <div [hidden]="tools.valid || tools.pristine"
+                              class='alert alert-danger'>
+                            Enter a set of tools
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="estimated_hours">Estimated Hours</label>
+                        <input type="number"
+                               class="form-control" 
+                               id="estimated_hours" 
+                               required 
+                               name="estimated_hours" 
+                               #estimated_hours='ngModel' 
+                               [(ngModel)]="proposal.estimated_hours">
+                        <div [hidden]="estimated_hours.valid || estimated_hours.pristine"
+                              class='alert alert-danger'>
+                            Enter an estimate of hours needed to complete the project
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="hourly_rate">Hourly Rate</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="number"
+                                   class="form-control" 
+                                   id="hourly_rate" 
+                                   required 
+                                   name="hourly_rate" 
+                                   #hourly_rate='ngModel' 
+                                    [(ngModel)]="proposal.hourly_rate"
+                        >
+                        </div>
+                        <div [hidden]="hourly_rate.valid || hourly_rate.pristine"
+                              class='alert alert-danger'>
+                            Enter a hourly rate needed to complete the project
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="weeks_to_complete">Weeks to Complete</label>
+                        <input type="number" 
+                               class="form-control"
+                               id="weeks_to_complete" 
+                               required 
+                               name="weeks_to_complete" 
+                               #weeks_to_complete='ngModel' 
+                               [(ngModel)]="proposal.weeks_to_complete">
+                        <div [hidden]="weeks_to_complete.valid || weeks_to_complete.pristine"
+                        class='alert alert-danger'>
+                            Enter weeks needed to complete the project
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="client_email">Client Email<em>(Optional)</em></label>
+                        <input type="email"
+                               class="form-control" 
+                               id="client_email" 
+                               name="client_email" 
+                               #client_email='ngModel' 
+                               [(ngModel)]="proposal.client_email">
+                    </div>
+                    <button type="submit"
+                    class='btn btn-outline-primary btn-lg'
+                    [disabled]="!proposalForm.form.valid"
+                    [hidden]="!submitted"
+                >
+                    Generate Proposal
+                </button>
+
+                <div
+                    [hidden]="submitted"
+                    class="alert alert-success"
+                    role="alert"
+                >
+                    Your proposal has been generated <a class="alert-link" 
+                       routerLink="/proposals">View all proposals</a>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class='col-md-6'>
+                
+             <p>Hi {{ proposal.customer }},</p>
+                
+            <p>I figured I'd email you on your preferred address.</p>
+            <p> URL <a href="{{proposal.portfolio_url }}">here</a> </p>
+                
+            <p>Tools {{ proposal.tools }}</p>
+                
+            <p>Estimated hours {{ proposal.estimated_hours }} Hourly Rate {{proposal.hourly_rate}} 
+                cost {{ proposal.estimated_hours * proposal.hourly_rate | currency:'USD':true:'.0' }} </p>
+                
+            <p> weeks to go: {{ proposal.weeks_to_complete }}</p>
+        </div>
+        
+    </div>
+
+</div>
